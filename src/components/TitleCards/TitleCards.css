@@ -1,33 +1,58 @@
-.title-cards{
-    margin-top:50px ;
-    margin-bottom:30px ;
+.title-cards {
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 
-.title-cards h2{
-    margin-bottom:8px ;
+.title-cards h2 {
+  margin-bottom: 8px;
+  color: #fff;
 }
 
-.card-list{
-    display: flex;
-    gap:10px;
-    overflow-x:scroll;
-}
-.card-list::-webkit-scrollbar{
-    display: none;
+/* Horizontal scroll container */
+.card-list {
+  display: flex;
+  overflow-x: auto; 
+  gap: 8px;  /* or scroll */
 }
 
-.card-list img{
-    width: 240px;
-    border-radius: 20px;
-    cursor: pointer;
+
+/* Chrome / Edge / Safari hide scrollbar */
+.card-list::-webkit-scrollbar {
+  display: none;
 }
 
-.card-list .card{
-    position: relative;
+/* Cards big enough so total width > screen */
+.card-list .card {
+  position: relative;
+  min-width: 260px;        /* 👈 keep this big */
+  height: 150px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  background: #333;
 }
 
-.card-list .card p{
-    position: absolute;
-    bottom:10px ;
-    right: 10px;
+.card-list .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-list .card p {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  left: 10px;
+  text-align: right;
+  padding: 5px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+}
+
+.card-list .card:hover {
+  transform: scale(1.03);
+  
 }
