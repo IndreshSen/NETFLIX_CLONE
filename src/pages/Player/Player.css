@@ -1,0 +1,88 @@
+.player {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 20px;
+    background: #000; /* optional for dark mode look */
+}
+
+/* Back button / Logo */
+.player img {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Responsive Video (Iframe) */
+.player iframe,
+.player-iframe {
+    width: 100%;
+    max-width: 900px;  /* desktop max */
+    height: 50vh;      /* normal ratio */
+    border-radius: 12px;
+    border: none;
+    background: #000;
+}
+
+/* Player info section (title, rating, etc.) */
+.player-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 900px;
+    font-size: 18px;
+    color: white;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* 📱 Small Mobile */
+@media (max-width: 480px) {
+    .player iframe,
+    .player-iframe {
+        height: 35vh;  /* Shorter video on phones */
+    }
+
+    .player-info {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 14px;
+    }
+
+    .player img {
+        width: 35px;
+        top: 10px;
+        left: 10px;
+    }
+}
+
+/* 📱 Tablets / Medium */
+@media (max-width: 768px) {
+    .player iframe,
+    .player-iframe {
+        height: 45vh;
+    }
+
+    .player-info {
+        font-size: 16px;
+    }
+}
+
+/* 🖥 Big screens */
+@media (min-width: 1200px) {
+    .player iframe,
+    .player-iframe {
+        height: 65vh;
+    }
+    .player-info {
+        font-size: 20px;
+    }
+}
