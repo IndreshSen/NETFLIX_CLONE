@@ -1,48 +1,65 @@
-import React, { use, useEffect, useState } from 'react'
-import './Player.css'
-import back_arrow_icon from '../../assets/back_arrow_icon.png'
+import React, { useEffect, useState } from 'react';
+import './Player.css';
+import back_arrow_icon from '../../assets/back_arrow_icon.png';
+import { useNavigate, useParams } from 'react-router-dom';
+
 const Player = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
- const [apiData,setApiData] =useState({
-  name:'',
-  key : '',
-  published_at:'',
-  typeof:''
- })
+  const [apiData, setApiData] = useState(null);
 
-  const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmEzNzcyNWE1NjgwZjlmY2VhMDEwMmJjMjUyNDRlMiIsIm5iZiI6MTc2NDA3NzY4NS41NzcsInN1YiI6IjY5MjViMDc1ZmRlZDY4YzQwZTMwYzhlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._K25PQBKU0yeo9ZmRW4VHJanLejo1-zWX_Wm_qPENB0'
-  }
-};
+  useEffect(() => {
+    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmEzNzcyNWE1NjgwZjlmY2VhMDEwMmJjMjUyNDRlMiIsIm5iZiI6MTc2NDA3NzY4NS41NzcsInN1YiI6IjY5MjViMDc1ZmRlZDY4YzQwZTMwYzhlNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._K25PQBKU0yeo9ZmRW4VHJanLejo1-zWX_Wm_qPENB0",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.results && res.results.length > 0) {
+          setApiData(res.results[0]);
+        } else {
+          setApiData(null); // no trailer, loader stays (as you asked)
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setApiData(null);
+      });
+  }, [id]);
 
-
-useEffect(()=>{
-fetch('https://api.themoviedb.org/3/movie/1419406/videos?language=en-US', options)
-  .then(response => response.json())
-  .then(response => setApiData(response.results[0]))
-  .catch(err => console.error(err));
-},[])
-
-
-  
   return (
     <div className='player'>
-      <img src={back_arrow_icon} alt="" />
-      <iframe width="90%" height="90%" 
-      src={`https://www.youtube.com/embed/${apiData.key}` }
-      title='trailer' frameBorder='0' allowFullScreen></iframe>
-      <div className="player-info">
-        <p>{apiData.published_at}</p>
-        <p>{apiData.name}</p>
-        <p>{apiData.type}</p>
-      </div>
+      <img onClick={() => navigate(-1)} src={back_arrow_icon} alt="back" className="back-btn" />
+
+      {apiData ? (
+        <>
+          <iframe
+            width="90%"
+            height="90%"
+            src={`https://www.youtube.com/embed/${apiData.key}`}
+            title='trailer'
+            frameBorder='0'
+            allowFullScreen
+          ></iframe>
+
+          <div className="player-info">
+            <p>{apiData.published_at?.slice(0, 10)}</p>
+            <p>{apiData.name}</p>
+            <p>{apiData.type}</p>
+          </div>
+        </>
+      ) : (
+        <div className="loader-wrapper">
+          <div className="loader"></div>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Player
-
-
+export default Player;
