@@ -10,7 +10,7 @@ const Player = () => {
   typeof:''
  })
 
-const options = {
+  const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
@@ -20,7 +20,7 @@ const options = {
 
 
 useEffect(()=>{
-fetch('https://api.themoviedb.org/3/tv/603692/videos?language=en-US', options)
+fetch('https://api.themoviedb.org/3/movie/1419406/videos?language=en-US', options)
   .then(response => response.json())
   .then(response => setApiData(response.results[0]))
   .catch(err => console.error(err));
@@ -32,7 +32,7 @@ fetch('https://api.themoviedb.org/3/tv/603692/videos?language=en-US', options)
     <div className='player'>
       <img src={back_arrow_icon} alt="" />
       <iframe width="90%" height="90%" 
-      src={`https://www.youtube.com/embed/${apiData.key}`}
+      src={`https://www.youtube.com/embed/${apiData.key}` }
       title='trailer' frameBorder='0' allowFullScreen></iframe>
       <div className="player-info">
         <p>{apiData.published_at}</p>
@@ -44,9 +44,5 @@ fetch('https://api.themoviedb.org/3/tv/603692/videos?language=en-US', options)
 }
 
 export default Player
-
-
-
-
 
 
