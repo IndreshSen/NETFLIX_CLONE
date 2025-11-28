@@ -56,3 +56,64 @@
   transform: scale(1.03);
   
 }
+
+
+/* Skeleton container */
+.skeleton-list {
+  display: flex;
+  gap: 10px;
+  overflow-x: hidden;
+}
+
+/* Skeleton card */
+.skeleton-card {
+  min-width: 260px;
+  height: 150px;
+  border-radius: 20px;
+  background: #2a2a2a;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Skeleton Container */
+.skeleton-list {
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+}
+
+/* Skeleton Card (Netflix style) */
+.skeleton-card {
+  min-width: 260px;
+  height: 150px;
+  border-radius: 20px;
+  background: #2d2d2d;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer Animation */
+.skeleton-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: skeleton-shimmer 1.2s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
