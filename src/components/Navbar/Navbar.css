@@ -52,7 +52,7 @@
 
 .navbar .dropdown{
     position: absolute;
-    top :100%;
+    top :70%;
     right:0;
     width:max-content;
     background: #191919;
@@ -61,6 +61,8 @@
     text-decoration:underline;
     z-index: 1;
     display: none;
+    overflow: hidden;
+
 }
 
 .navbar .dropdown p{
