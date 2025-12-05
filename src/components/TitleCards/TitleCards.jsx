@@ -1,8 +1,5 @@
-// TitleCards.jsx
-import React, { useEffect, useRef } from 'react';
-import './TitleCards.css';   // <-- exact filename (case-sensitive)
-import cards_data from '../../assets/cards/Cards_data';
-
+import React, { useEffect, useRef, useState } from 'react';
+import './titlecards.css';
 
 const TitleCards = ({ title, category }) => {
   const [apiData, setApiData] = useState([]);
