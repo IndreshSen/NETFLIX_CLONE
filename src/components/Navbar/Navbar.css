@@ -16,7 +16,11 @@
     gap: 50px;
 }
 
+<<<<<<< Updated upstream
 .navbar-left img {
+=======
+.navbar-left img{
+>>>>>>> Stashed changes
     width: 90px;
 }
 
@@ -52,7 +56,11 @@
 
 .navbar .dropdown {
     position: absolute;
+<<<<<<< Updated upstream
     top: 70%;
+=======
+    top: 60%;
+>>>>>>> Stashed changes
     right: 0;
     width: max-content;
     background: #191919;
@@ -73,6 +81,7 @@
     display: block;
 }
 
+<<<<<<< Updated upstream
 .nav-dark {
    background: #141414; 
 }
@@ -145,4 +154,8 @@
     .navbar-left {
         gap: 40px;
     }
+=======
+.nav-dark{
+    background: #141414;
+>>>>>>> Stashed changes
 }

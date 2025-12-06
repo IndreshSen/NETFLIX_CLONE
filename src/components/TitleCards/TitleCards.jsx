@@ -1,5 +1,13 @@
+<<<<<<< Updated upstream
 import React, { useEffect, useRef, useState } from 'react';
 import './titlecards.css';
+=======
+// TitleCards.jsx
+import React, { useEffect, useRef, useState } from "react";
+import "./TitleCards.css";
+import { Link } from "react-router-dom";
+import cards_data from "../../assets/cards/Cards_data"; // <-- your local data
+>>>>>>> Stashed changes
 
 const TitleCards = ({ title, category }) => {
   const [apiData, setApiData] = useState([]);
@@ -28,15 +36,39 @@ const TitleCards = ({ title, category }) => {
       .then((data) => setApiData(data.results))
       .catch((err) => console.error(err));
 
+<<<<<<< Updated upstream
     const container = cardsRef.current;
     container.addEventListener('wheel', handleWheel);
     return () => container.removeEventListener('wheel', handleWheel);
   }, []);
+=======
+    setLoading(true);
+
+    fetch(url, options)
+      .then((res) => {
+        if (!res.ok) throw new Error("API Error " + res.status);
+        return res.json();
+      })
+      .then((data) => {
+        if (data.results?.length > 0) {
+          setApiData(data.results);
+        } else {
+          throw new Error("Empty API data");
+        }
+      })
+      .catch((err) => {
+        console.warn("API failed, using LOCAL DATA:", err.message);
+        setApiData(cards_data); // <-- YOUR LOCAL DATA FALLBACK
+      })
+      .finally(() => setLoading(false));
+  }, [category]);
+>>>>>>> Stashed changes
 
   return (
     <div className="titlecards">
       <h2>{title ? title : 'Popular on Netflix'}</h2>
 
+<<<<<<< Updated upstream
       <div className="card-list" ref={cardsRef}>
         {apiData.map((card, index) => (
           <div className="card" key={index}>
@@ -48,6 +80,31 @@ const TitleCards = ({ title, category }) => {
           </div>
         ))}
       </div>
+=======
+      {loading ? (
+        <div className="tc-loading">Loading...</div>
+      ) : (
+        <div className="card-list" ref={cardsRef} onWheel={handleWheel}>
+          {apiData.map((card, index) => (
+            <Link
+              to={`/player/${card.id || index}`} // local cards have no id
+              className="card"
+              key={index}
+            >
+              <img
+                src={
+                  card.backdrop_path
+                    ? `https://image.tmdb.org/t/p/w500${card.backdrop_path}`
+                    : card.image // <--- LOCAL IMAGE SUPPORT
+                }
+                alt={card.original_title || card.name || card.title}
+              />
+              <p>{card.original_title || card.name || card.title}</p>
+            </Link>
+          ))}
+        </div>
+      )}
+>>>>>>> Stashed changes
     </div>
   );
 };

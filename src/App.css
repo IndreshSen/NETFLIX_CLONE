@@ -1,0 +1,113 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GLOBAL APP STYLING */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Smooth fade-in of each page */
+.page {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scrollbar styling (Netflix dark) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Fix layout for routes container */
+.App {
+  min-height: 100vh;
+  width: 100%;
+  background: #000;
+}
+
+/* Toastify custom dark look */
+.Toastify__toast {
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.Toastify__toast-theme--dark {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.Toastify__progress-bar-theme--dark {
+  background: #e50914; /* Netflix red */
+}
+
+/* For container padding */
+.main-container {
+  padding-top: 80px; /* navbar height spacing */
+}
+
+/* Fullscreen player styling */
+.player-page {
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Centered loading layout */
+.app-loading {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+  flex-direction: column;
+}
+
+/* Simple spinner */
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,0.08);
+  border-top-color: #e50914; /* netflix red accent */
+  animation: spin 0.9s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Optional small message under spinner */
+.app-loading p {
+  font-size: 14px;
+  color: #e5e5e5;
+  opacity: 0.9;
+  margin: 0;
+}
